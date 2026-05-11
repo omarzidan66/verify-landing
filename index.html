@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify - 3D Scene with Nav</title>
+    <link rel="stylesheet" href="./master.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <img src="./photos/verify_logo.png" alt="Logo" />
+      </div>
+
+      <div class="nav-links">
+        <a href="https://mohazi-docs.netlify.app/">Documentation</a>
+        <a href="https://github.com/WarMhmd/mohazi" target="_blank">GitHub</a>
+      </div>
+    </nav>
+
+    <div class="scene" id="scene">
+      <img
+        src="/photos/bg.jpg"
+        id="bg-sky"
+        class="layer"
+        alt="Background Sky"
+      />
+
+      <img src="/photos/bear_img.png" id="bear" alt="Bear" />
+
+      <div id="leaf-container" class="layer">
+        <img
+          src="./photos/leaves1.png"
+          id="living-leaves"
+          style="width: 100%; height: 100%; object-fit: cover"
+          alt="Main Leaves"
+        />
+      </div>
+
+      <div id="top-leaf-container" class="layer">
+        <img
+          src="./photos/leaves2.png"
+          id="top-leaves"
+          style="width: 100%; height: 100%; object-fit: cover"
+          alt="Foreground Leaves"
+        />
+      </div>
+    </div>
+
+    <section class="code-section">
+      <div class="code-box">
+        <button class="copy-btn" onclick="copyCode(this)">
+          <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span class="copy-text">Copy</span>
+        </button>
+        <pre class="code-pre"><code class="language-yaml code-content">login:
+  username:
+    type: string
+    required: true
+    rules:
+      pattern:
+        value: '^[a-zA-Z0-9_]+$'
+        error: 'Username can only contain letters, numbers, and underscores.'
+      minLength:
+        value: 3
+        error: 'Username must be at least 3 characters long.'
+      maxLength:
+        value: 20
+        error: 'Username must be at most 20 characters long.'
+  password:
+    type: string
+    required: true
+    rules:
+      pattern:
+        value: '^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$'
+        error: 'Password must contain at least one letter and one number.'
+      minLength:
+        value: 8
+        error: 'Password must be at least 8 characters long.'
+      maxLength:
+        value: 100
+        error: 'Password must be at most 100 characters long.'</code></pre>
+      </div>
+    </section>
+
+    <script src="./motion.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        hljs.highlightAll();
+      });
+
+      function copyCode(btn) {
+        const code = btn
+          .closest(".code-box")
+          .querySelector(".code-content").textContent;
+        navigator.clipboard.writeText(code).then(() => {
+          const text = btn.querySelector(".copy-text");
+          text.textContent = "Copied!";
+          setTimeout(() => (text.textContent = "Copy"), 2000);
+        });
+      }
+    </script>
+  </body>
+</html>
