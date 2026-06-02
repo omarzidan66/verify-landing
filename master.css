@@ -144,7 +144,7 @@ nav {
   width: 45%;
   position: absolute;
   left: 5%;
-  top: 50%;
+  top: 30%;
   transform: translateY(-50%);
   filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
 }

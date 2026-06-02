@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:zustand-demo.pmnd.rs)",
+      "Bash(curl -s https://zustand-demo.pmnd.rs/)"
+    ]
+  }
+}
